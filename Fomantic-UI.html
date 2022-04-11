@@ -2,63 +2,143 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
-  <title>Fomantic-UI</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <title>Fomantic-UI</title>
 </head>
 
 <body>
-  <div id="app">
-    <div class="ui attached stackable inverted large menu">
-      <div class="ui container">
-        <a class="active item">
-          <i class="home icon"></i> Home
-        </a>
-        <a class="item">
-          <i class="grid layout icon"></i> Browse
-        </a>
-        <a class="item">
-          <i class="mail icon"></i> Messages
-        </a>
-        <div class="ui simple dropdown inverted item">
-          More
-          <i class="dropdown icon"></i>
-          <div class="menu">
-            <a class="item"><i class="edit icon"></i> Edit Profile</a>
-            <a class="item"><i class="globe icon"></i> Choose Language</a>
-            <a class="item"><i class="settings icon"></i> Account Settings</a>
-          </div>
+    <div id="app">
+        <div class="ui top fixed borderless inverted stackable large menu">
+            <div class="ui container">
+                <div class="header item">Home</div>
+                <a class="icon item"><i class="asterisk loading icon"></i></a>
+                <a class="icon item"><i class="help icon"></i></a>
+                <div class="ui dropdown link item">
+                    <span class="text">Shopping</span>
+                    <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <div class="header">Categories</div>
+                        <div class="item">
+                            <span class="text">Clothing</span>
+                            <i class="dropdown icon"></i>
+                            <div class="menu">
+                                <div class="header">Mens</div>
+                                <div class="item">Shirts</div>
+                                <div class="item">Pants</div>
+                                <div class="item">Jeans</div>
+                                <div class="item">Shoes</div>
+                                <div class="divider"></div>
+                                <div class="header">Womens</div>
+                                <div class="item">Dresses</div>
+                                <div class="item">Shoes</div>
+                                <div class="item">Bags</div>
+                            </div>
+                        </div>
+                        <div class="item">Home Goods</div>
+                        <div class="item">Bedroom</div>
+                        <div class="divider"></div>
+                        <div class="header">Order</div>
+                        <div class="item">Status</div>
+                        <div class="item">Cancellations</div>
+                    </div>
+                </div>
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui transparent inverted icon input">
+                            <i class="search link icon"></i>
+                            <input type="search" placeholder="Search" v-model="search">
+                        </div>
+                    </div>
+                    <a class="item active">
+                        <em data-emoji="slight_smile" class="link"></em>
+                    </a>
+                </div>
+            </div>
         </div>
-        <div class="right item">
-          <div class="ui transparent inverted icon input">
-            <input type="text" placeholder="Search...">
-            <i class="icon search"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="ui very padded text container segment">
-      <h2 class="ui header">Dogs Roles with Humans</h2>
-      <p>{{count}}</p>
-    </div>
 
-  </div>
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.min.js"></script>
-  <script>
-    const app = Vue.createApp({
-      data() {
-        return {
-          count: 2
-        }
-      }
-    })
+        <section style="margin-top: 60px">
+            <div class="ui text container segment">
+                <h2 class="ui header">{{message}}</h2>
+            </div>
 
-    app.mount('#app')
-  </script>
+            <div class="ui container">
+                <table class="ui black fixed table">
+                    <thead>
+                        <tr>
+                            <th>Flag</th>
+                            <th>ISBN</th>
+                            <th>Name</th>
+                            <th>Author</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="data of filterData">
+                            <td><i class="flag" :class="data.flag"></i></td>
+                            <td>{{data.ISBN}}</td>
+                            <td>{{data.name}}</td>
+                            <td>{{data.author}}</td>
+                            <td>{{data.price}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.min.js"></script>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    message: 'Dogs Roles with Humans',
+                    search: '',
+                    tableData: [
+                        { ISBN: '9780385504201', name: 'The Da Vinci Code', author: 'Dan Brown', price: '19.99', flag: 'us' },
+                        { ISBN: '9781250109361', name: 'Date with death', author: 'Julia Chapman', price: '19.99', flag: 'it' },
+                        { ISBN: '9780399124426', name: 'Red Dragon', author: 'Thomas Harris', price: '19.99', flag: 'ru' },
+                        { ISBN: '9781978128019', name: 'The Black Arrow', author: 'Robert Louis Stevenson', price: '19.99', flag: 'ca' },
+                        { ISBN: '9781513207667', name: 'Crome Yellow', author: 'Aldous Huxley', price: '19.99', flag: 'lt' },
+                        { ISBN: '9782060051000', name: 'Michelin Green Guide', author: 'Michelin', price: '19.99', flag: 'lv' },
+                        { ISBN: '9798527514308', name: 'White People Illustrated', author: 'Arthur Machen', price: '19.99', flag: 'fr' },
+                        { ISBN: '9780330469579', name: 'True Blue', author: 'David Baldacci', price: '19.99', flag: 'am' },
+                        { ISBN: '9789067660297', name: 'The Color Purple', author: 'Alice Walker', price: '19.99', flag: 'fi' },
+                        { ISBN: '9780393305531', name: 'A Clockwork Orange', author: 'Anthony Burgess', price: '19.99', flag: 'ae' },
+                        { ISBN: '9780986247439', name: 'Fire and Dust', author: 'Christopher Datta', price: '19.99', flag: 'tr' },
+                        { ISBN: '9780385504201', name: 'The Da Vinci Code', author: 'Dan Brown', price: '19.99', flag: 'us' },
+                        { ISBN: '9781250109361', name: 'Date with death', author: 'Julia Chapman', price: '19.99', flag: 'it' },
+                        { ISBN: '9780399124426', name: 'Red Dragon', author: 'Thomas Harris', price: '19.99', flag: 'ru' },
+                        { ISBN: '9781978128019', name: 'The Black Arrow', author: 'Robert Louis Stevenson', price: '19.99', flag: 'ca' },
+                        { ISBN: '9781513207667', name: 'Crome Yellow', author: 'Aldous Huxley', price: '19.99', flag: 'lt' },
+                        { ISBN: '9782060051000', name: 'Michelin Green Guide', author: 'Michelin', price: '19.99', flag: 'lv' },
+                        { ISBN: '9798527514308', name: 'White People Illustrated', author: 'Arthur Machen', price: '19.99', flag: 'fr' },
+                        { ISBN: '9780330469579', name: 'True Blue', author: 'David Baldacci', price: '19.99', flag: 'am' },
+                        { ISBN: '9789067660297', name: 'The Color Purple', author: 'Alice Walker', price: '19.99', flag: 'fi' },
+                        { ISBN: '9780393305531', name: 'A Clockwork Orange', author: 'Anthony Burgess', price: '19.99', flag: 'ae' },
+                        { ISBN: '9780986247439', name: 'Fire and Dust', author: 'Christopher Datta', price: '19.99', flag: 'tr' },
+                    ],
+                }
+            },
+            computed: {
+                filterData() {
+                    return this.tableData.filter(data => !this.search || data.name.includes(this.search))
+                }
+            },
+            mounted() {
+                $('.ui.dropdown').dropdown({
+                    on: 'hover',
+                    showOnFocus: true,
+                })
+
+            }
+        })
+        app.mount('#app')
+    </script>
 </body>
 
 </html>

@@ -16,3 +16,34 @@ GFL-163048-2TAG-HO22-BRFS_1UPS/GFL-163048-2TAG-HO22-BRFS_back_PXHK/GFL-163048-2T
 GFL-163048-3TAG-HO22-BRFS_1UPS/GFL-163048-3TAG-HO22-BRFS_back_PXHK/GFL-163048-3TAG-HO22-BRFS_back2_PXHK/GFL-163048-3TAG-HO22-BRFS_back3_PXHK/GFL-163048-3TAG-HO22-BRFS_front_PXHK/GFL-163048-3TAG-HO22-BRFS_front2_PXHK/GFL-163048-3TAG-HO22-BRFS_front3_PXHK
 
 GFL-163048-4TAG-HO22-BRFS_front4_PXHK/GFL-163048-4TAG-HO22-BRFS_front3_PXHK/GFL-163048-4TAG-HO22-BRFS_front2_PXHK/GFL-163048-4TAG-HO22-BRFS_front_PXHK/GFL-163048-4TAG-HO22-BRFS_back4_PXHK/GFL-163048-4TAG-HO22-BRFS_back3_PXHK/GFL-163048-4TAG-HO22-BRFS_back2_PXHK/GFL-163048-4TAG-HO22-BRFS_back_PXHK/GFL-163048-4TAG-HO22-BRFS_1UPS
+
+
+«fields BatchNo, LabelRef, PrintRun, UserInfo, NoUp, CustOrdNo, CustPO, CurrentDate, Style, Color, Size, ColorDesc, Barcode, HriEan, HriUpc, Material, Vendor
+«put hidden BatchNo marked “A”
+«put hidden LabelRef marked “B”
+«put hidden PrintRun marked “C”
+«put hidden UserInfo marked “D”
+«put hidden LogoColor marked “E”
+«put hidden ItemCode marked “F”
+«put hidden CustPO marked “G”
+«put hidden CustOrdNo marked “H”
+«put hidden CurrentDate marked “I”
+«repeat 1
+
+«put styled Color»
+«put styled Size»
+«put styled ColorDesc»
+«put styled Style»
+«put styled Material»
+«put styled Vendor»
+«if HriEan is not empty»
+«put styled Barcode»
+	«char 1 to 1 of HriEan»	«char 2 to 7 of HriEan»	«char 8 to 13 of HriEan»
+«end if»«if HriUpc is not empty»
+«put styled Barcode»
+	«char 1 to 1 of HriUpc»	«char 2 to 6 of HriUpc»	«char 7 to 11 of HriUpc»	«char 12 to 12 of HriUpc»
+«end if»«end repeat»
+
+
+AD-127439115-1
+AD-127439126-1

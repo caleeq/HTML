@@ -6,93 +6,47 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
-    <title>Fomantic-UI</title>
-    <style>
-        section {
-            margin-top: 4em;
-        }
-    </style>
+    <title>Document</title>
 </head>
 
 <body>
-    <div id="app">
-        <div class="ui top fixed borderless inverted stackable large menu">
-            <div class="ui container">
-                <div class="header item">Home</div>
-                <a class="icon item" @click="refreshTable"><i class="sync alternate loading icon"></i></a>
-                <a class="icon item"><i class="help icon"></i></a>
-                <div class="ui dropdown inverted item">
-                    More
-                    <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <div class="item">Applications</div>
-                        <div class="item">International Students</div>
-                        <div class="item">Scholarships</div>
-                    </div>
-                </div>
-                <div class="right menu">
-                    <div class="item">
-                        <div class="ui transparent inverted icon input">
-                            <i class="search link icon"></i>
-                            <input type="search" placeholder="Search" v-model="search">
+    <div id="app" class="ui container">
+        <h2>
+            {{message}}
+        </h2>
+        <div class="ui centered vertically padded grid">
+            <div class="five wide column">
+                <div class="ui blue segment">
+                    <form class="ui form" :class="isLoading">
+                        <div class="field">
+                            <label>Username</label>
+                            <input type="text" name="username" v-model="username">
                         </div>
-                    </div>
-                    <a class="item active">
-                        <em data-emoji="slight_smile" class="link"></em>
-                    </a>
+                        <div class="field">
+                            <label>Password</label>
+                            <input type="password" name="password" v-model="password">
+                        </div>
+                        <div class="field">
+                            <div class="ui checkbox">
+                                <input type="checkbox" name="terms">
+                                <label>I agree to the Terms and Conditions</label>
+                            </div>
+                        </div>
+                        <button class="ui submit primary button">Submit</button>
+                        <div class="ui error message"></div>
+                    </form>
                 </div>
             </div>
         </div>
-
-        <section>
-            <div class="ui text container segment">
-                <h2 class="ui header">{{message}}</h2>
-            </div>
-
-            <div class="ui container">
-                <table class="ui black single line sortable fixed celled table">
-                    <thead>
-                        <tr>
-                            <th>Flag</th>
-                            <th>ISBN</th>
-                            <th>Name</th>
-                            <th>Author</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="data of paginateData">
-                            <td><i class="flag" :class="data.flag"></i></td>
-                            <td>{{data.ISBN}}</td>
-                            <td>{{data.name}}</td>
-                            <td>{{data.author}}</td>
-                            <td>{{data.price}}</td>
-                        </tr>
-                    </tbody>
-                    <tfoot v-if="search && !filterData.length">
-                        <tr class="center aligned">
-                            <td colspan="5" class="ui error message">No Data</td>
-                        </tr>
-                    </tfoot>
-                </table>
-                <div class="ui right floated tiny pagination menu">
-                    <a class="icon item" @click="pageNow-1?pageNow--:null"><i class="ui icon left chevron"></i></a>
-                    <a class="active item disabled">{{pageNow}}</a>
-                    <a class="icon item" @click="pageTotal-pageNow?pageNow++:null"><i class="ui icon right chevron"></i></a>
-                </div>
-            </div>
-        </section>
-
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
-    <script src="https://semantic-ui.com/javascript/library/tablesort.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.min.js"></script>
     <script>
         const app = Vue.createApp({
             data() {
                 return {
-                    message: 'Dogs Roles with Humans',
+                    message: 'The quick brown fox jumps over the lazy dog',
                     search: '',
                     tableData: [
                         { ISBN: '9780385504201', name: 'The Da Vinci Code', author: 'Dan Brown', price: '$199.99', flag: 'us' },
@@ -120,6 +74,9 @@
                     ],
                     pageSize: 10,
                     pageNow: 1,
+                    username: '',
+                    password: '',
+                    isLoading: '',
                 }
             },
             computed: {
@@ -139,10 +96,51 @@
                 refreshTable() {
                     $('body').toast({
                         message: 'I am not refresh',
-                        class: 'primary',
+                        class: '',
                         position: 'centered'
                     })
                 },
+                signInButtonPressed() {
+                    $('.ui.form').form({
+
+                        onSuccess: () => {
+                            alert('Form is valid. Go ahead.');
+                        },
+                        onFailure: () => {
+                            alert('Form is invalid. Try again.');
+                        },
+                    })
+                },
+                loginForm() {
+                    $('.ui.form').form({
+                        fields: {
+                            username: 'empty',
+                            password: ['minLength[6]', 'empty'],
+                            terms: 'checked',
+                        },
+                        onSuccess: () => {
+                            alert('Form is valid. Go ahead.');
+                        },
+                        onFailure: () => {
+                            alert('Form is invalid. Try again.');
+                        },
+                    })
+
+                    // if (this.username == 'admin' && this.password == '123456') {
+                    //     this.isLoading = 'blue loading'
+                    //     setTimeout(() => {
+                    //         this.isLoading = ''
+                    //         this.message = "Hello " + this.username
+                    //     }, 1000);
+                    // } else {
+                    //     $('body').toast({
+                    //         message: 'Incorrect username or password',
+                    //         class: 'error',
+                    //         position: 'center bottom'
+                    //     })
+                    // }
+
+                }
             },
             mounted() {
                 $('.ui.dropdown').dropdown({
@@ -155,8 +153,13 @@
                         touch: 100
                     }
                 })
-                $('.ui.table').tablesort();
-
+                $('.ui.form').form({
+                    fields: {
+                        username: 'empty',
+                        password: ['minLength[6]', 'empty'],
+                        terms: 'checked',
+                    },
+                })
             }
         })
         app.mount('#app')

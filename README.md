@@ -271,26 +271,6 @@ INC0670362
 file:../../Scripts/ExportText.tab
 file:../../Scripts/MasterName.tab
 
-«fields BatchNo, ProdID, Sheets, ProDetail, NoUp, UMDCODE, HRI, CustOrdNo, PoNum, Date, LabelRef
-«put hidden BatchNo marked “A”
-«put hidden ProdID marked “B”
-«put hidden Sheets marked “C”
-«put hidden ProDetail marked “D”
-«put hidden PONum marked “E”
-«put hidden CustOrdNo marked “F”
-«put hidden Date marked “G”
-«repeat 1
+«fields BatchNo, LabelRef, Sheets, ProDetail, NoUp, KRStatement, Coo, FiberEN, FiberRU, FiberTR, FiberKR, FiberHR, FiberFR, FiberIT, FiberEL, FiberUA, FiberCL, FiberBR, FiberHU, FiberTW, FiberAT, FiberCA, FiberJP, FiberAE1, FiberAE2, FiberPL, FiberCN, FiberSI, ManufacturingMonthYear, Style, MNO, PoNumber, AveryOrderNumber, Date, FiberOut, CooEn, FiberAE3, FiberAE4, FiberAE5, FiberAE6, FiberAE7, RussianProductName, EAC, BRAND, KCcode, CooArabic
 
-«HRI»
-«put styled SKU»
-«put styled UMDCODE»
-«put styled STYLE»
-«put styled COLOR»
-«put styled SIZE»
-«put styled FABRIC»
-«put styled BARCODE2»
-«put styled UNIQUE»
-«end repeat»
-
-487713
-487869
+AR67784 

@@ -5,43 +5,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.css">
+    <link rel="stylesheet" href="/static/semantic.min.css">
     <title>Document</title>
+    <style>
+        body>.grid {
+            height: 100%;
+        }
+
+        .column {
+            max-width: 400px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="app" class="ui container">
-        <h2>
-            {{message}}
-        </h2>
-        <div class="ui centered vertically padded grid">
-            <div class="five wide column">
-                <div class="ui blue segment">
-                    <form class="ui form" :class="isLoading">
-                        <div class="field">
-                            <label>Username</label>
-                            <input type="text" name="username" v-model="username">
-                        </div>
-                        <div class="field">
-                            <label>Password</label>
-                            <input type="password" name="password" v-model="password">
-                        </div>
-                        <div class="field">
-                            <div class="ui checkbox">
-                                <input type="checkbox" name="terms">
-                                <label>I agree to the Terms and Conditions</label>
-                            </div>
-                        </div>
-                        <button class="ui submit primary button">Submit</button>
-                        <div class="ui error message"></div>
-                    </form>
+    <div id="app" class="ui middle aligned center aligned grid">
+        <div class="column">
+            <h2 class="ui primary header">
+                <div class="content">
+                    {{message}}
                 </div>
+            </h2>
+            <div class="ui segment">
+                <form class="ui form">
+                    <div class="field">
+                        <input type="text" name="username" placeholder="Username">
+                    </div>
+                    <div class="field">
+                        <input type="text" name="password" placeholder="Password">
+                    </div>
+                    <div class="field">
+                        <div class="ui checkbox">
+                            <input type="checkbox" name="terms" tabindex="0" class="hidden">
+                            <label>I agree to the Terms and Conditions</label>
+                        </div>
+                    </div>
+                    <button class="ui fluid submit primary button">LOGIN</button>
+                    <div class="ui error message"></div>
+                </form>
             </div>
+            <div class="ui message">
+                New to us? <a href="#" @click="refreshTable">Sign Up</a>
+            </div>
+      
+        <table class="ui unstackable celled table">
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Order</th>
+                    <th>Mode</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>LPN-BCG</td>
+                    <td>488151</td>
+                    <td>SNAP 700</td>
+                </tr>
+                <tr>
+                    <td>GKT1ABFRFSCHO22</td>
+                    <td>487713</td>
+                    <td>PC Mate</td>
+                </tr>
+                <tr>
+                    <td>UMD-STK-BCG</td>
+                    <td>487348</td>
+                    <td>SNAP 700</td>
+                </tr>
+            </tbody>
+        </table>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@3.2.31/dist/vue.global.min.js"></script>
+    <script src="/static/jquery.min.js"></script>
+    <script src="/static/semantic.min.js"></script>
+    <script src="/static/vue.global.js"></script>
     <script>
         const app = Vue.createApp({
             data() {
@@ -95,52 +132,11 @@
             methods: {
                 refreshTable() {
                     $('body').toast({
-                        message: 'I am not refresh',
-                        class: '',
-                        position: 'centered'
+                        message: 'Sorry, not available now',
+                        class: 'error',
+                        position: 'top center'
                     })
                 },
-                signInButtonPressed() {
-                    $('.ui.form').form({
-
-                        onSuccess: () => {
-                            alert('Form is valid. Go ahead.');
-                        },
-                        onFailure: () => {
-                            alert('Form is invalid. Try again.');
-                        },
-                    })
-                },
-                loginForm() {
-                    $('.ui.form').form({
-                        fields: {
-                            username: 'empty',
-                            password: ['minLength[6]', 'empty'],
-                            terms: 'checked',
-                        },
-                        onSuccess: () => {
-                            alert('Form is valid. Go ahead.');
-                        },
-                        onFailure: () => {
-                            alert('Form is invalid. Try again.');
-                        },
-                    })
-
-                    // if (this.username == 'admin' && this.password == '123456') {
-                    //     this.isLoading = 'blue loading'
-                    //     setTimeout(() => {
-                    //         this.isLoading = ''
-                    //         this.message = "Hello " + this.username
-                    //     }, 1000);
-                    // } else {
-                    //     $('body').toast({
-                    //         message: 'Incorrect username or password',
-                    //         class: 'error',
-                    //         position: 'center bottom'
-                    //     })
-                    // }
-
-                }
             },
             mounted() {
                 $('.ui.dropdown').dropdown({
@@ -156,10 +152,11 @@
                 $('.ui.form').form({
                     fields: {
                         username: 'empty',
-                        password: ['minLength[6]', 'empty'],
+                        password: 'minLength[6]',
                         terms: 'checked',
                     },
                 })
+                $('.ui.checkbox').checkbox('check')
             }
         })
         app.mount('#app')

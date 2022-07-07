@@ -213,6 +213,7 @@ test0425steven
 autobatch: 可以，多就IT
 1 po 1 batch: autobatch?IT
 loa hold: 可以，多就IT
+autobatch by po 找batchman
 
 1. learn more about vips setup error, locate the cause and remark for reference later 
 2. pay more attention to email or ticket about the vips issue, know the reason and solution
@@ -224,38 +225,26 @@ loa hold: 可以，多就IT
 
 «fields BatchNo, LabelRef, Sheets, ProDetail, NoUp, KRStatement, CooEn, Coo, CooAE, FiberEN, FiberCN, FiberOut, ManufacturingMonthYear, FiberAE1, FiberAE2, FiberAE3, FiberAE4, FiberAE5, FiberAE6, FiberAE7, RussianProductName, AnimalOriginal, AntimicrobialClaim, EAC, BRAND, KCcode, MNO, PoNumber, AveryOrderNumber, Date
 
-484267
-484269
-484280
-484281
-484285
-484286
-484299
+1. 混沌纪元
+2. 黑暗纪元
+   - 亵渎石板1
+3. 灾变纪元
+   - 光辉年代
+   - 灾难年代
+4. 众神时代
+   - 所罗门帝国、黑皇帝
+     - 安提哥努斯
+     - 查拉图 
+   - 图铎王朝、血皇帝
+     - 亚伯拉罕
+     - 塔玛拉
+   - 特伦索斯帝国
+     - 雅各
+     - 阿蒙
+   - 亵渎石板2
+5. 黑铁纪元
 
-«fields BatchNo, LabelRef, Sheets, ProDetail, NoUp, KRStatement, CooEn, Coo, CooAE, FiberEN, FiberCN, FiberOut, ManufacturingMonthYear, FiberAE1, FiberAE2, FiberAE3, FiberAE4, FiberAE5, FiberAE6, FiberAE7, RussianProductName, AnimalOriginal, AntimicrobialClaim, EAC, BRAND, KCcode, MNO, PoNumber, AveryOrderNumber, Date
-
-484748
-484788
-484789
-
-484834
-484836
-484837
-484838
-
-«put styled twoPiece»
-«end if»«end repeat»
-
-485906
-485907
-485908
-485909
-
-486190
-486199
-
-486568
-486575
+真实造物主
 
 | itemcode      | dataset | lookup    |
 | ------------- | ------- | --------- |
@@ -271,6 +260,47 @@ INC0670362
 file:../../Scripts/ExportText.tab
 file:../../Scripts/MasterName.tab
 
-«fields BatchNo, LabelRef, Sheets, ProDetail, NoUp, KRStatement, Coo, FiberEN, FiberRU, FiberTR, FiberKR, FiberHR, FiberFR, FiberIT, FiberEL, FiberUA, FiberCL, FiberBR, FiberHU, FiberTW, FiberAT, FiberCA, FiberJP, FiberAE1, FiberAE2, FiberPL, FiberCN, FiberSI, ManufacturingMonthYear, Style, MNO, PoNumber, AveryOrderNumber, Date, FiberOut, CooEn, FiberAE3, FiberAE4, FiberAE5, FiberAE6, FiberAE7, RussianProductName, EAC, BRAND, KCcode, CooArabic
+«put styled unquoted Size1»
+«put styled Size1»
 
-AR67784 
+«put styled unquoted Size4»
+«put styled Size4»
+
+AR70820
+https://drive.google.com/drive/folders/1j00FCoTlFS4t68_TxFPmiJ5U9c_eBI76?usp=sharing
+
+
+97O1
+97O01
+
+
+1. ST-904479-R110-ROLL X2  qc
+//2. SCS-2C
+3. 82-58-593-A 6/21pm
+4. RD-01-072-A_1-300953-000-00.pdf
+5. SPV2 duplicate
+6. RD-01-070 SPV_SPV3
+
+
+«fields JobID, ProductIDOut, Sheets, UserInfo, Noup, PONum, CustOrdNo, Date, Item_Desc, Style_COLOR, VSN, BARCODE, HRIA, HRIB, HRIC, HRID, BARCODE2
+«put hidden JobID marked “A”
+«put hidden ProductIDOut marked “B”
+«put hidden SheetS marked “C”
+«put hidden UserInfo marked “D”
+«put hidden PONum marked “E”
+«put hidden CustOrdNo marked “F”
+«put hidden Date marked “G”
+«repeat 1
+
+
+«put styled Item_Desc»
+«put styled Style_COLOR»
+«put styled VSN»
+«put styled BARCODE»
+«CHAR 1 TO 1 OF HRIA»	«CHAR 2 TO 6 OF HRIA»	«CHAR 7 TO 11 OF HRIA»	«CHAR 12 TO 12 OF HRIA»
+«CHAR 1 TO 1 OF HRIB»	«CHAR 2 TO 7 OF HRIB»	«CHAR 8 TO 13 OF HRIB»
+«put styled BARCODE2»
+	«CHAR 1 TO 4 OF HRIC»	«CHAR 5 TO 8 OF HRIC»	
+«end repeat»
+
+507609

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/fomantic-ui@2.8.8/dist/semantic.min.css">
+  <style>
+    body {
+      background-color: #FFFFFF;
+    }
+
+    .ui.menu .item em {
+      margin-right: 0.5em;
+    }
+
+    .main.container {
+      margin-top: 7em;
+    }
+
+    .ui.footer.segment {
+      margin: 5em 0em 0em;
+      padding: 5em 0em;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+
+    <div class="ui fixed inverted borderless menu">
+      <div class="ui container">
+        <a href="#" class="header item">
+          <em data-emoji="books" class="small"></em>
+          Brand Logo
+        </a>
+        <div href="#" class="item">Home</div>
+        <div class="ui simple dropdown item">
+          Dropdown <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item" href="#">Link Item</a>
+            <a class="item" href="#">Link Item</a>
+            <div class="divider"></div>
+            <div class="header">Header Item</div>
+            <div class="item">
+              <i class="dropdown icon"></i>
+              Sub Menu
+              <div class="menu">
+                <a class="item" href="#">Link Item</a>
+                <a class="item" href="#">Link Item</a>
+              </div>
+            </div>
+            <a class="item" href="#">Link Item</a>
+          </div>
+        </div>
+        <div class="right menu">
+          <div class="item">
+            <div class="ui transparent inverted left icon input">
+              <input type="text" placeholder="Search" v-model="search">
+              <i class="search icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ui main container">
+      <table class="ui single line inverted table">
+        <thead>
+          <tr>
+            <th v-for="header of tableHeader">{{header}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="data of tableData">
+            <td><i class="large flag" :class="data.flag"></i></td>
+            <td>{{data.name}}</td>
+            <td>{{data.author}}</td>
+            <td>{{data.price}}</td>
+            <td>{{data.ISBN}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td v-for="header of tableHeader">{{header}}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+
+    <div class="ui inverted vertical footer segment">
+      <div class="ui center aligned container">
+        <div class="ui stackable inverted divided grid">
+          <div class="three wide column">
+            <h4 class="ui inverted header">Group 1</h4>
+            <div class="ui inverted link list">
+              <a href="#" class="item">Link One</a>
+              <a href="#" class="item">Link Two</a>
+              <a href="#" class="item">Link Three</a>
+              <a href="#" class="item">Link Four</a>
+            </div>
+          </div>
+          <div class="three wide column">
+            <h4 class="ui inverted header">Group 2</h4>
+            <div class="ui inverted link list">
+              <a href="#" class="item">Link One</a>
+              <a href="#" class="item">Link Two</a>
+              <a href="#" class="item">Link Three</a>
+              <a href="#" class="item">Link Four</a>
+            </div>
+          </div>
+          <div class="three wide column">
+            <h4 class="ui inverted header">Group 3</h4>
+            <div class="ui inverted link list">
+              <a href="#" class="item">Link One</a>
+              <a href="#" class="item">Link Two</a>
+              <a href="#" class="item">Link Three</a>
+              <a href="#" class="item">Link Four</a>
+            </div>
+          </div>
+          <div class="seven wide column">
+            <h4 class="ui inverted header">Footer Header</h4>
+            <p>Extra space for a call to action inside the footer that could help re-engage users.</p>
+          </div>
+        </div>
+        <div class="ui inverted section divider"></div>
+        <div class="ui centered">
+          <em data-emoji="books" class="small"></em>
+        </div>
+        <div class="ui horizontal inverted small divided link list">
+          <a class="item" href="#">Site Map</a>
+          <a class="item" href="#">Contact Us</a>
+          <a class="item" href="#">Terms and Conditions</a>
+          <a class="item" href="#">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
+  <script src="https://unpkg.com/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
+  <script src="https://unpkg.com/vue@3"></script>
+  <script>
+    const app = Vue.createApp({
+      data() {
+        return {
+          menu: true,
+          message: 'The quick brown fox jumps over the lazy dog',
+          search: '',
+          tableHeader: ['', 'Name', 'Author', 'Price', 'ISBN'],
+          tableData: [
+            { ISBN: '9780385504201', name: 'The Da Vinci Code', author: 'Dan Brown', price: '$199.99', flag: 'us' },
+            { ISBN: '9781250109361', name: 'Date with death', author: 'Julia Chapman', price: '$19.99', flag: 'it' },
+            { ISBN: '9780399124426', name: 'Red Dragon', author: 'Thomas Harris', price: '$19.99', flag: 'ru' },
+            { ISBN: '9781978128019', name: 'The Black Arrow', author: 'Robert Louis Stevenson', price: '$190.99', flag: 'ca' },
+            { ISBN: '9781513207667', name: 'Crome Yellow', author: 'Aldous Huxley', price: '$19.99', flag: 'lt' },
+            { ISBN: '9782060051000', name: 'Michelin Green Guide', author: 'Michelin', price: '$119.99', flag: 'lv' },
+            { ISBN: '9798527514308', name: 'White People Illustrated', author: 'Arthur Machen', price: '$19.99', flag: 'fr' },
+            { ISBN: '9780330469579', name: 'True Blue', author: 'David Baldacci', price: '$129.99', flag: 'am' },
+            { ISBN: '9789067660297', name: 'The Color Purple', author: 'Alice Walker', price: '$19.99', flag: 'fi' },
+            { ISBN: '9780393305531', name: 'A Clockwork Orange', author: 'Anthony Burgess', price: '$19999999.99', flag: 'ae' },
+            { ISBN: '9780986247439', name: 'Fire and Dust', author: 'Christopher Datta', price: '$19.99', flag: 'tr' },
+            { ISBN: '9780385504201', name: 'The Da Vinci Code', author: 'Dan Brown', price: '$19.99', flag: 'us' },
+            { ISBN: '9781250109361', name: 'Date with death', author: 'Julia Chapman', price: '$19.99', flag: 'it' },
+            { ISBN: '9780399124426', name: 'Red Dragon', author: 'Thomas Harris', price: '$1109.99', flag: 'ru' },
+            { ISBN: '9781978128019', name: 'The Black Arrow', author: 'Robert Louis Stevenson', price: '$19.99', flag: 'ca' },
+            { ISBN: '9781513207667', name: 'Crome Yellow', author: 'Aldous Huxley', price: '$1910.99', flag: 'lt' },
+            { ISBN: '9782060051000', name: 'Michelin Green Guide', author: 'Michelin', price: '$19.99', flag: 'lv' },
+            { ISBN: '9798527514308', name: 'White People Illustrated', author: 'Arthur Machen', price: '$19.99', flag: 'fr' },
+            { ISBN: '9780330469579', name: 'True Blue', author: 'David Baldacci', price: '$119.99', flag: 'am' },
+            { ISBN: '9789067660297', name: 'The Color Purple', author: 'Alice Walker', price: '$19.99', flag: 'fi' },
+            { ISBN: '9780393305531', name: 'A Clockwork Orange', author: 'Anthony Burgess', price: '$19.99', flag: 'ae' },
+            { ISBN: '9780986247439', name: 'Fire and Dust', author: 'Christopher Datta', price: '$109.99', flag: 'tr' },
+          ],
+          pageSize: 10,
+          pageNow: 1,
+          username: '',
+          password: '',
+          isLoading: '',
+        }
+      },
+      computed: {
+        filterData() {
+          return this.tableData.filter(data => !this.search || data.name.toLowerCase().includes(this.search))
+        },
+        paginateData() {
+          let start = (this.pageNow - 1) * this.pageSize
+          let end = this.pageNow * this.pageSize
+          return this.filterData.slice(start, end)
+        },
+        pageTotal() {
+          return Math.ceil(this.filterData.length / this.pageSize)
+        },
+      },
+      methods: {
+        refreshTable() {
+          $('body').toast({
+            message: 'Sorry, not available now',
+            class: 'error',
+            position: 'top center'
+          })
+        },
+      },
+      mounted() {
+        $('.ui.dropdown').dropdown({
+          on: 'click',
+          showOnFocus: true,
+          delay: {
+            hide: 50,
+            show: 50,
+            search: 100,
+            touch: 100
+          }
+        })
+        $('.ui.dropdown').dropdown('set text', 'PXHK')
+        $('.ui.form').form({
+          fields: {
+            username: 'empty',
+            password: 'minLength[6]',
+            terms: 'checked',
+          },
+        })
+        $('.ui.checkbox').checkbox('uncheck')
+        $('.menu .item').tab()
+      }
+    })
+    app.mount('#app')
+  </script>
+</body>
+
+</html>

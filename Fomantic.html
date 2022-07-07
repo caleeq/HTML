@@ -7,74 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/semantic.min.css">
     <title>Document</title>
-    <style>
-        body>.grid {
-            height: 100%;
-        }
-
-        .column {
-            max-width: 400px;
-        }
-    </style>
 </head>
 
 <body>
-    <div id="app" class="ui middle aligned center aligned grid">
-        <div class="column">
-            <h2 class="ui primary header">
-                <div class="content">
-                    {{message}}
+    <div id="app">
+        <div class="ui attached inverted menu" v-show="menu">
+            <div class="ui container">
+                <div class="header item">Brand</div>
+                <div class="link item">Home</div>
+                <div class="ui inverted dropdown item">
+                    View
+                    <i class="dropdown icon"></i>
+                    <div class="transition hidden menu">
+                        <div class="item">Create</div>
+                        <div class="item">Delete</div>
+                        <div class="item">Read</div>
+                        <div class="item">Update</div>
+                    </div>
                 </div>
-            </h2>
-            <div class="ui segment">
-                <form class="ui form">
-                    <div class="field">
-                        <input type="text" name="username" placeholder="Username">
-                    </div>
-                    <div class="field">
-                        <input type="text" name="password" placeholder="Password">
-                    </div>
-                    <div class="field">
-                        <div class="ui checkbox">
-                            <input type="checkbox" name="terms" tabindex="0" class="hidden">
-                            <label>I agree to the Terms and Conditions</label>
+                <div class="right menu">
+                    <div class="item">
+                        <div class="ui transparent inverted input">
+                            <input type="text" placeholder="Search" v-model="search">
                         </div>
                     </div>
-                    <button class="ui fluid submit primary button">LOGIN</button>
-                    <div class="ui error message"></div>
-                </form>
+                </div>
             </div>
-            <div class="ui message">
-                New to us? <a href="#" @click="refreshTable">Sign Up</a>
-            </div>
-      
-        <table class="ui unstackable celled table">
+        </div>
+        <table class="ui attached inverted unstackable single line compact table">
             <thead>
                 <tr>
-                    <th>Item</th>
-                    <th>Order</th>
-                    <th>Mode</th>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Coo</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>LPN-BCG</td>
-                    <td>488151</td>
-                    <td>SNAP 700</td>
-                </tr>
-                <tr>
-                    <td>GKT1ABFRFSCHO22</td>
-                    <td>487713</td>
-                    <td>PC Mate</td>
-                </tr>
-                <tr>
-                    <td>UMD-STK-BCG</td>
-                    <td>487348</td>
-                    <td>SNAP 700</td>
+                <tr v-for="data of filterData">
+                    <td v-for="prop of data">{{prop}}</td>
                 </tr>
             </tbody>
         </table>
-        </div>
+
+    </div>
+
     </div>
     <script src="/static/jquery.min.js"></script>
     <script src="/static/semantic.min.js"></script>
@@ -83,6 +61,7 @@
         const app = Vue.createApp({
             data() {
                 return {
+                    menu: true,
                     message: 'The quick brown fox jumps over the lazy dog',
                     search: '',
                     tableData: [
@@ -149,6 +128,7 @@
                         touch: 100
                     }
                 })
+                $('.ui.dropdown').dropdown('set text', 'PXHK')
                 $('.ui.form').form({
                     fields: {
                         username: 'empty',
@@ -156,7 +136,8 @@
                         terms: 'checked',
                     },
                 })
-                $('.ui.checkbox').checkbox('check')
+                $('.ui.checkbox').checkbox('uncheck')
+                $('.menu .item').tab()
             }
         })
         app.mount('#app')

@@ -5,100 +5,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://unpkg.com/fomantic-ui@2.8.8/dist/semantic.min.css">
     <title>Document</title>
+    <link rel="stylesheet" href="/static/semantic.min.css">
 </head>
 
 <body>
-    <div id="app" class="ui container">
-        <div class="ui small equal width form attached top segment" :class="{'primary loading':loadFrom}">
-            <div class="fields">
-                <div class="required field">
-                    <label>RBO</label>
-                    <select class="ui search selection dropdown" name="rbo" v-model="test.rbo">
-                        <option v-for="rbo of rboList" :value="rbo">{{rbo}}</option>
-                    </select>
-                </div>
-                <div class="required field">
-                    <label>ORDER</label>
-                    <input type="text" name="order" v-model="test.order">
-                </div>
-                <div class="required field">
-                    <label>MODE</label>
-                    <select class="ui search selection dropdown" name="mode" v-model="test.mode">
-                        <option v-for="mode of modeList" :value="mode">{{mode}}</option>
-                    </select>
-                </div>
-                <div class="required field">
-                    <label>ITEM</label>
-                    <input type="text" name="item" v-model="test.item">
-                </div>
-            </div>
-            <div class="fields">
-                <div class="field">
-                    <button class="ui primary button" @click="submitForm">Submit</button>
-                    <button class="ui button" @click="clearForm">Reset</button>
-                </div>
-                <div class="field info">
-                    <div class="ui icon large input">
-                        <input type="text" placeholder="Type to Search..." v-model="search">
-                        <i v-if="search" class="link times icon" @click="clearSearch"></i>
-                        <i v-else class="icon search" @click="clearSearch"></i>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="ui right floated pagination primary small menu">
-                        <a class="icon item" @click="pageNow-1?pageNow--:null">
-                            <i class="left chevron icon"></i>
-                        </a>
-                        <a class="item" v-for="(page,index) of pageList" :class="{'active':pageActive[index]}" @click="toPage(page)">{{page}}</a>
-                        <a class="icon item" @click="pageTotal-pageNow?pageNow++:null">
-                            <i class="right chevron icon"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <table class="ui unstackable primary fixed compact single line attached celled table">
-            <thead>
-                <tr>
-                    <th v-for="header of tableHeader">{{header}}</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(data,index) of paginateData">
-                    <td v-for="prop in data">{{prop}}</td>
-                </tr>
-                <tr v-show="loading">
-                    <td colspan="4">
-                        <div class="ui active indeterminate primary text centered inline loader">Preparing Files</div>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr v-if="search && !paginateData.length">
-                    <td colspan="4">
-                        <div class="ui center aligned error message">
-                            No Data
+    <div class="ui container">
+        <div class="ui centered grid">
+            <div class="five wide column">
+                <h3 class="ui top attached primary block header">Sign In</h3>
+                <div class="ui bottom attached segment">
+                    <form class="ui form">
+                        <div class="required field">
+                            <label>Username</label>
+                            <input type="text" placeholder="">
                         </div>
-                    </td>
-                </tr>
-            </tfoot>
-        </table>
-        <div class="ui bottom attached segment" v-if="filterData.length">
-            <div class="ui small breadcrumb">
-                <div class="active section">Total</div>
-                <i class="right chevron icon divider"></i>
-                <div class="section">{{pageTotal}} page</div>
-                <i class="right chevron icon divider"></i>
-                <div class="section">{{filterData.length}} recrod</div>
+                        <div class="required small field">
+                            <label>Password</label>
+                            <input type="password" placeholder="">
+                        </div>
+                        <div class="ui primary submit fluid button">Sign in</div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-    <script src="https://unpkg.com/jquery@3.3.1/dist/jquery.js"></script>
-    <script src="https://unpkg.com/fomantic-ui@2.8.8/dist/semantic.min.js"></script>
-    <script src="https://unpkg.com/vue@3"></script>
-    <?!= include('Javascript'); ?>
 </body>
 
 </html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+    <script src="//unpkg.com/vue@3"></script>
+    <script src="//unpkg.com/element-plus"></script>
+    <style>
+        .common-layout {
+            font-family: Helvetica Neue,
+                Helvetica,
+                Microsoft YaHei,
+                Arial,
+                sans-serif;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="common-layout">
+            <el-container>
+                <el-header>Header</el-header>
+                <el-main>
+                    <el-form :label-position="labelPosition" label-width="100px" :model="formLabelAlign" style="max-width: 460px">
+                        <el-form-item label="Name">
+                            <el-input v-model="formLabelAlign.name" />
+                        </el-form-item>
+                        <el-form-item label="Activity zone">
+                            <el-input v-model="formLabelAlign.region" />
+                        </el-form-item>
+                        <el-form-item label="Activity form">
+                            <el-input v-model="formLabelAlign.type" />
+                        </el-form-item>
+                        <el-form-item>
+                            <el-button type="primary" @click="onSubmit" :loading="isLoading">Submit</el-button>
+                            <el-button @click="onCancel">Cancel</el-button>
+                        </el-form-item>
+                    </el-form>
+                    <el-button plain>{{ message }}</el-button>
+                    <el-button text bg>{{ message }}</el-button>
+                </el-main>
+                <el-table :data="tableData" style="width: 100%">
+                    <el-table-column prop="date" label="Date" width="180" />
+                    <el-table-column prop="name" label="Name" width="180" />
+                    <el-table-column prop="address" label="Address" />
+                </el-table>
+            </el-container>
+        </div>
+
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    message: "Hello Element Plus",
+                    labelPosition: 'top',
+                    formLabelAlign: { name: '', region: '', type: '' },
+                    isLoading: false,
+                    tableData: [
+                        {
+                            date: '2016-05-03',
+                            name: 'Tom',
+                            address: 'No. 189, Grove St, Los Angeles',
+                        },
+                        {
+                            date: '2016-05-02',
+                            name: 'Tom',
+                            address: 'No. 189, Grove St, Los Angeles',
+                        },
+                        {
+                            date: '2016-05-04',
+                            name: 'Tom',
+                            address: 'No. 189, Grove St, Los Angeles',
+                        },
+                        {
+                            date: '2016-05-01',
+                            name: 'Tom',
+                            address: 'No. 189, Grove St, Los Angeles',
+                        },
+                    ],
+                };
+            },
+            methods: {
+                onSubmit() {
+                    this.isLoading = true
+                },
+                onCancel() {
+                    this.isLoading = false
+                }
+            }
+        };
+        const app = Vue.createApp(App);
+        app.use(ElementPlus);
+        app.mount("#app");
+    </script>
+</body>
+
+</html>

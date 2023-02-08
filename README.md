@@ -32,31 +32,31 @@ autobatch by po 找batchman
 2. Item Name in Ordering System: cannot have hyphen
 3. Ask DSS provide test order in D2Comm: A6QX9
 
-«fields BatchNo, LabelRef, PrintRun, UserInfo, NoUp, STYLE, SEASON, MONTH, SUPPLIER, FACTORY, COUNTRY, REFERENCE, CustOrdNo, CustPO, CurrentDate, ItemCode
-«put hidden BatchNo marked “A”
-«put hidden LabelRef marked “B”
-«put hidden PrintRun marked “C”
-«put hidden UserInfo marked “D”
-«put hidden LogoColor marked “E”
-«put hidden ItemCode marked “F”
-«put hidden CustPO marked “G”
-«put hidden CustOrdNo marked “H”
-«put hidden CurrentDate marked “I”
-«repeat 1
+«fields BatchNo, LabelRef, PrintRun, UserInfo, NoUp, STYLE, SEASON, MONTH, SUPPLIER, FACTORY, COUNTRY, REFERENCE, CustOrdNo, CustPO, CurrentDate, ItemCode  
+«put hidden BatchNo marked “A”  
+«put hidden LabelRef marked “B”  
+«put hidden PrintRun marked “C”  
+«put hidden UserInfo marked “D”  
+«put hidden LogoColor marked “E”  
+«put hidden ItemCode marked “F”  
+«put hidden CustPO marked “G”  
+«put hidden CustOrdNo marked “H”  
+«put hidden CurrentDate marked “I”  
+«repeat 1  
 
-«put styled mNo»
-«put styled CertNo»
-«Style»
-«SizeCode»
-«put styled UPC»
- «char 1 to 1 of HRI» «char 2 to 6 of HRI» «char 7 to 11 of HRI» «char 12 to 12 of HRI»
-«put styled STYLE»
-«put styled SEASON»
-«put styled MONTH»
-«put styled SUPPLIER»
-«put styled FACTORY»
-«put styled COUNTRY»
-«put styled REFERENCE»
+«put styled mNo»  
+«put styled CertNo»  
+«Style»  
+«SizeCode»  
+«put styled UPC»  
+ «char 1 to 1 of HRI» «char 2 to 6 of HRI» «char 7 to 11 of HRI» «char 12 to 12 of HRI»  
+«put styled STYLE»  
+«put styled SEASON»  
+«put styled MONTH»  
+«put styled SUPPLIER»  
+«put styled FACTORY»  
+«put styled COUNTRY»  
+«put styled REFERENCE»  
 
 ## AR84373
 

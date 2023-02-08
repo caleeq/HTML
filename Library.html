@@ -1,0 +1,78 @@
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/element-plus"></script>
+    <title>demo</title>
+</head>
+
+<body>
+    <div id="app">
+        <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" @select="handleSelect" :ellipsis="false">
+            <div class="slogan-box">{{message}}</div>
+            <div class="flex-grow"></div>
+            <el-menu-item index="1">WorkSpace</el-menu-item>
+            <el-menu-item index="3">Info</el-menu-item>
+            <el-menu-item index="4">Orders</el-menu-item>
+            <el-sub-menu index="2">
+                <template #title>Center</template>
+                <el-menu-item index="2-1">item one</el-menu-item>
+                <el-menu-item index="2-2">item two</el-menu-item>
+                <el-menu-item index="2-3">item three</el-menu-item>
+            </el-sub-menu>
+        </el-menu>
+    </div>
+    <script>
+        const App = {
+            data() {
+                return {
+                    message: "HELLO | WORLD",
+                    activeIndex: "0"
+                };
+            },
+            methods: {
+                handleSelect(key, keyPath) {
+                    console.log(key, keyPath);
+                },
+            }
+        };
+        const app = Vue.createApp(App);
+        app.use(ElementPlus);
+        app.mount("#app");
+    </script>
+</body>
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0;
+        box-sizing: border-box;
+    }
+
+    .el-menu-demo {
+        height: 2rem;
+    }
+
+    .slogan-box {
+        color: #fff;
+        width: 8rem;
+        margin-left: 2rem;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flex-grow {
+        flex-grow: 1;
+    }
+
+    .el-menu-item,
+    .el-sub-menu,
+    .el-sub-menu__title {
+        font-size: 0.8rem;
+    }
+</style>
+
+</html>

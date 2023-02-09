@@ -44,19 +44,12 @@ autobatch by po 找batchman
 «put hidden CurrentDate marked “I”  
 «repeat 1  
 
-«put styled mNo»  
-«put styled CertNo»  
-«Style»  
-«SizeCode»  
 «put styled UPC»  
  «char 1 to 1 of HRI» «char 2 to 6 of HRI» «char 7 to 11 of HRI» «char 12 to 12 of HRI»  
-«put styled STYLE»  
-«put styled SEASON»  
-«put styled MONTH»  
-«put styled SUPPLIER»  
-«put styled FACTORY»  
-«put styled COUNTRY»  
-«put styled REFERENCE»  
+
+«if Carton_Mark is not empty»«else»«endif»
+
+«fields JobID, ProductIdOUT, sheets, UserInfo, NoUp, labelref, CustOrdNo, Date, barcode1, hri1, dept_name, item_desc, F_COLOR, COLOR_DESC, F_UPC, HRI_code, HRI_code2, F_SIZE, SIZE1, SIZE2, F_PO, PO_desc, PO_desc2, F_DEPT, DEPT1, DEPT2, F_SSN, season1, season2, barcode2, carton_qty, carton_end, carton_side, F_FROM, FROM1, FROM2, FROM3, FROM4, TO1, TO2, TO3, TO4, F_carton, seed_num, barcode3, barcode4, Carton_Mark
 
 ## AR84373
 
